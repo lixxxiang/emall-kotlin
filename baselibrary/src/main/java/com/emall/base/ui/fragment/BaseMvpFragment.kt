@@ -1,4 +1,4 @@
-package com.emall.base.ui.activity
+package com.emall.base.ui.fragment
 
 import android.os.Bundle
 import com.emall.base.common.BaseApplication
@@ -10,10 +10,7 @@ import com.emall.base.presenter.BasePresenter
 import com.emall.base.presenter.view.BaseView
 import javax.inject.Inject
 
-/**
- * Created by 刘晓 on 2018/6/6.
- */
-open abstract class BaseMvpActivity<T: BasePresenter<*>>:BaseActivity(), BaseView {
+open abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView {
     lateinit var mActivityComponent: ActivityComponent
 
     override fun showLoading() {
@@ -37,11 +34,10 @@ open abstract class BaseMvpActivity<T: BasePresenter<*>>:BaseActivity(), BaseVie
 
     abstract fun injectComponent()
     private fun initActivityInjection() {
-        mActivityComponent = DaggerActivityComponent.builder().appComponent((application as BaseApplication).appComponent)
-                .activityModule(ActivityModule(this))
+        mActivityComponent = DaggerActivityComponent.builder().appComponent((activity.application as BaseApplication).appComponent)
+                .activityModule(ActivityModule(activity))
                 .lifecycleProviderModule(LifecycleProviderModule(this))
                 .build()
 
     }
-
 }

@@ -10,18 +10,19 @@ import io.reactivex.ObservableSource
 import io.reactivex.functions.Function
 import javax.inject.Inject
 
-class UserServiceImpl @Inject constructor(): UserService {
+class UserServiceImpl @Inject constructor() : UserService {
     @Inject
     lateinit var repository: UserRepository
 
     override fun register(telephone: String, userName: String, userPassword: String): Observable<Boolean> {
         Logger.d(telephone + userName + userPassword)
-        return repository.register(telephone, userName, userPassword).flatMap(Function<BaseResp<String>, ObservableSource<Boolean>> { t ->
-            if (t.status != 0){
-                return@Function Observable.error(BaseException(t.status, t.message))
-            }
-            Observable.just(true)
-        })
+        return repository.register(telephone, userName, userPassword)
+                .flatMap(Function<BaseResp<String>, ObservableSource<Boolean>> { t ->
+                    if (t.status != 0) {
+                        return@Function Observable.error(BaseException(t.status, t.message))
+                    }
+                    Observable.just(true)
+                })
     }
 
     override fun testService(): Observable<Boolean> {
