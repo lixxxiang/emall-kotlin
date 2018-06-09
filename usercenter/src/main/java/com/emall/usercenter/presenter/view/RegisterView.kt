@@ -7,4 +7,5 @@ import com.emall.base.presenter.view.BaseView
  */
 interface RegisterView : BaseView {
    fun onTestResult()
+   fun onRegisterResult(res: String)
 }
