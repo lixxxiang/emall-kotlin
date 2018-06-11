@@ -1,6 +1,8 @@
 package com.emall.usercenter.ui.activity
 
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import com.emall.base.ui.activity.BaseMvpActivity
 
 import com.emall.usercenter.R
@@ -33,6 +35,11 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(),RegisterView  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+        val toolbar = mToolbarLayout.findViewById<Toolbar>(R.id.mToolbar)
+        toolbar.title = "测试"
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         Logger.addLogAdapter(AndroidLogAdapter())
 //        mPresenter = RegisterPresenter()
         btn.setOnClickListener{

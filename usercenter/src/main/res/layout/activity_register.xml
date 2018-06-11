@@ -5,9 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.emall.usercenter.ui.activity.RegisterActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include android:id="@+id/mToolbarLayout" layout="@layout/toolbar"/>
+        <Button
+            android:layout_below="@+id/mToolbarLayout"
+            android:id="@+id/btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 
-    <Button
-        android:id="@+id/btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 </android.support.constraint.ConstraintLayout>
